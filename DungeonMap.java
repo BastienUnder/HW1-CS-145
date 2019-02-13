@@ -44,7 +44,7 @@ public class DungeonMap {
     }
 
     public boolean playerLocationValid(int x, int y){
-        if (playerYLocation + y != 0 && playerYLocation + y != room.length-1 && playerXLocation + x != 0 && playerXLocation + x != room[0].length){
+        if (playerYLocation + y != 0 && playerYLocation + y != room.length-1 && playerXLocation + x != 0 && playerXLocation + x != room[0].length-1){
             return true;
         }else {
             System.out.println("Not a valid direction.");
