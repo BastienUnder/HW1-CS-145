@@ -59,7 +59,7 @@ public class Player {
             health = WARRIOR_STARTING_HEALTH;
             damage = WARRIOR_STARTING_DAMAGE;
             gold = WARRIOR_STARTING_GOLD;
-           playerIcon = WARRIOR_ICON;
+            playerIcon = WARRIOR_ICON;
         }
 
         // if player chooses thief class
@@ -78,9 +78,11 @@ public class Player {
     }
 
     public void attack(Monster target){
-        System.out.println("Player hits " + target.getMonsterType() + " for " + damage);
+        System.out.println("Player hits " + target.getMonsterType() + " for " + damage + " damage!");
 
         target.onHit(damage);
+
+        System.out.println("Monster HP: " + target.getHealth());
     }
     public void onHit(int damage){
 
@@ -88,6 +90,8 @@ public class Player {
 
         if(health <=0){
             System.out.println("The player has died");
+            System.out.println("You have died which means your adventure comes to an end... until next time.");
+            System.exit(0);
         }
 
     }
@@ -116,27 +120,13 @@ public class Player {
     public void onLoot(int gold){
         if(getPlayerClass().equals("1")){
             this.gold += gold;
+            System.out.println("You found a bag of gold and gained "+gold+" gold");
         }
         else if(getPlayerClass().equals("2")){
-            this.gold += (gold * THIEF_LOOT_MODIFIER);
-        }
-    }
+            double modifier = gold+(gold*THIEF_LOOT_MODIFIER);
+            this.gold += modifier;
 
-    public String getPlayerIcon() {
-        return playerIcon;
-    }
-
-    public void setPlayerIcon(String playerIcon) {
-        this.playerIcon = playerIcon;
-    }
-}
-
-    public void onLoot(int gold){
-        if(getPlayerClass().equals("1")){
-            this.gold += gold;
-        }
-        else if(getPlayerClass().equals("2")){
-            this.gold += (gold * THIEF_LOOT_MODIFIER);
+            System.out.println("You found a bag of gold and gained "+modifier+" gold");
         }
     }
 
